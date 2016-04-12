@@ -22,7 +22,6 @@ public class SkiTest {
         assertThat(path, is(asList(4)));
     }
 
-
     @Test
     public void itShouldSkyInDownhillDirectionOnly() throws Exception {
         List<Integer> routeMap = asList(4, 3);
@@ -45,12 +44,12 @@ public class SkiTest {
 
     @Test
     public void itShouldStopSkiingWhenHigherElevationIsFound() throws Exception {
-        List<Integer> routeMap = asList(4, 3, 5, 1);
+        List<Integer> routeMap = asList(10, 1, 11, 9);
         Ski ski = new Ski(routeMap);
         List<Integer> path = ski.getPath();
 
         assertThat(path.size(), is(2));
-        assertThat(path, is(asList(4, 3)));
+        assertThat(path, is(asList(10, 1)));
     }
 
     @Test
@@ -61,5 +60,15 @@ public class SkiTest {
 
         assertThat(path.size(), is(3));
         assertThat(path, is(asList(5, 4, 1)));
+    }
+
+    @Test
+    public void itShouldSkyForTheLongestPathDistanceWithHighestSteepDownhill() throws Exception {
+        List<Integer> routeMap = asList(4, 3, 5, 1);
+        Ski ski = new Ski(routeMap);
+        List<Integer> path = ski.getPath();
+
+        assertThat(path.size(), is(2));
+        assertThat(path, is(asList(5, 1)));
     }
 }
